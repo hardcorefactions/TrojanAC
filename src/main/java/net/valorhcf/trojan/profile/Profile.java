@@ -1,6 +1,5 @@
 package net.valorhcf.trojan.profile;
 
-import cc.fyre.hcf.event.sotw.SOTWHandler;
 import com.viaversion.viaversion.ViaVersionPlugin;
 import net.minecraft.server.v1_8_R3.*;
 import net.valorhcf.trojan.Trojan;
@@ -148,7 +147,7 @@ public class Profile {
 
         // Fyre - still handle tracker check
 
-        if (!(Trojan.getInstance().isHCFEnabled() && SOTWHandler.INSTANCE.isActive())) {
+        if (!(Trojan.getInstance().isHCFEnabled())) {
 
             for (Check c : checkList) {
                 try {
@@ -199,7 +198,7 @@ public class Profile {
             e.printStackTrace();
         }
 
-        if (Trojan.getInstance().isHCFEnabled() && SOTWHandler.INSTANCE.isActive()) {
+        if (Trojan.getInstance().isHCFEnabled()) {
             return;
         }
 
@@ -214,7 +213,7 @@ public class Profile {
 
     public void onMove(TrojanLocation from, TrojanLocation to, boolean moved, boolean rotated) {
 
-        if (Trojan.getInstance().isHCFEnabled() && SOTWHandler.INSTANCE.isActive()) {
+        if (Trojan.getInstance().isHCFEnabled()) {
             return;
         }
 
@@ -229,7 +228,7 @@ public class Profile {
 
     public void onMouseLeftClick(int ticks) {
 
-        if (Trojan.getInstance().isHCFEnabled() && SOTWHandler.INSTANCE.isActive()) {
+        if (Trojan.getInstance().isHCFEnabled()) {
             return;
         }
 
@@ -242,7 +241,7 @@ public class Profile {
 
     public void onTeleport() {
 
-        if (Trojan.getInstance().isHCFEnabled() && SOTWHandler.INSTANCE.isActive()) {
+        if (Trojan.getInstance().isHCFEnabled()) {
             return;
         }
 
@@ -251,7 +250,7 @@ public class Profile {
 
     public void onTrojanKeepAlive() {
 
-        if (Trojan.getInstance().isHCFEnabled() && SOTWHandler.INSTANCE.isActive()) {
+        if (Trojan.getInstance().isHCFEnabled()) {
             return;
         }
 
