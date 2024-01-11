@@ -1,0 +1,6 @@
+name: Trojan
+main: net.valorhcf.trojan.Trojan
+version: ${git.commit.id.abbrev}
+author: Rowin
+depend: ["Core","Shard","ModSuite"]
+softdepend: ["HCF"]
