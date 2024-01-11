@@ -14,7 +14,6 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import me.lucko.helper.Schedulers;
 import me.lucko.helper.plugin.ExtendedJavaPlugin;
-import net.minecraft.server.v1_8_R3.MinecraftServer;
 import net.valorhcf.trojan.ban.BanManager;
 import net.valorhcf.trojan.flag.FlagManager;
 import net.valorhcf.trojan.listener.BukkitListeners;
@@ -22,7 +21,6 @@ import net.valorhcf.trojan.log.LogManager;
 import net.valorhcf.trojan.profile.Profile;
 import net.valorhcf.trojan.profile.ProfileManager;
 import net.valorhcf.trojan.util.TrojanTimings;
-import okhttp3.OkHttpClient;
 import org.bson.Document;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -30,8 +28,6 @@ import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import redis.clients.jedis.JedisPool;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -187,4 +183,7 @@ public class Trojan extends ExtendedJavaPlugin {
         jedisPool = new JedisPool(getConfig().getString("mongo.host"),6379);
     }
 
+    public String getServerId() {
+        return "KitMap";
+    }
 }

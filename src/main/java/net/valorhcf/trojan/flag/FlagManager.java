@@ -8,7 +8,6 @@ import cc.fyre.core.server.ServerModule;
 import cc.fyre.modsuite.mod.ModHandler;
 import cc.fyre.modsuite.staff.setting.StaffAlertsSettingType;
 import cc.fyre.modsuite.staff.setting.ViewStaffAlertsSetting;
-import cc.fyre.shard.disguise.DisguiseHandler;
 import cc.fyre.shard.util.item.ItemBuilder;
 import mkremins.fanciful.FancyMessage;
 import net.valorhcf.trojan.Trojan;
@@ -20,7 +19,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
-import java.util.*;
 import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 

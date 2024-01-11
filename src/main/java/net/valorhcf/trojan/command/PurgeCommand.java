@@ -10,9 +10,10 @@ import net.valorhcf.trojan.Trojan;
 import org.bson.Document;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import static org.bukkit.ChatColor.*;
 
 import java.util.UUID;
+
+import static org.bukkit.ChatColor.GREEN;
 
 public class PurgeCommand {
 

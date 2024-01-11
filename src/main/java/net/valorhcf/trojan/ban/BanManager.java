@@ -1,20 +1,13 @@
 package net.valorhcf.trojan.ban;
 
-import cc.fyre.core.profile.ProfileHandler;
-import cc.fyre.core.server.ServerModule;
 import me.lucko.helper.Schedulers;
 import net.valorhcf.trojan.Trojan;
 import net.valorhcf.trojan.check.Check;
-import net.valorhcf.trojan.flag.FlagAlertType;
-import net.valorhcf.trojan.flag.FlagManager;
 import net.valorhcf.trojan.log.LogManager;
 import net.valorhcf.trojan.profile.Profile;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
-
-import java.util.function.Predicate;
 
 public class BanManager {
 
@@ -58,11 +51,11 @@ public class BanManager {
 
         }, 1);
 
-        if (ServerModule.INSTANCE.getServerId().contains("Staging")) {
+        if (Trojan.getInstance().getServerId().contains("Staging")) {
             return;
         }
 
-        final String displayName = ProfileHandler.INSTANCE.getDisplayNameById(profile.entityPlayer.getUniqueID());
+        final String displayName = profile.entityPlayer.getName();
 
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "ban" + " " + profile.player.getName() + " " + "14d" + " " + "Cheating");
         Bukkit.broadcastMessage(

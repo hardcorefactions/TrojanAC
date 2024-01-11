@@ -7,9 +7,7 @@ import cc.fyre.shard.command.data.command.Command;
 import cc.fyre.shard.constants.ApiConstants;
 import net.valorhcf.trojan.flag.FlagAlertType;
 import net.valorhcf.trojan.flag.FlagManager;
-import okhttp3.Request;
 import org.bukkit.ChatColor;
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import retrofit2.Response;
 

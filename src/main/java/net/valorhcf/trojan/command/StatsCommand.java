@@ -8,7 +8,6 @@ import net.valorhcf.trojan.Trojan;
 import net.valorhcf.trojan.util.TrojanTimings;
 import org.bson.Document;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 

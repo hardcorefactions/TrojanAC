@@ -1,6 +1,5 @@
 package net.valorhcf.trojan.log;
 
-import cc.fyre.core.server.ServerModule;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import me.lucko.helper.Schedulers;
@@ -19,8 +18,6 @@ public class LogManager {
     private static final int DELAY = 20;
 
     private final Queue<Log> queue = new ConcurrentLinkedQueue<>();
-    @Getter
-    private final LogService service = Trojan.getInstance().getRetrofit().create(LogService.class);
 
     public LogManager() {
         Schedulers.async().runRepeating(() -> {
@@ -38,15 +35,15 @@ public class LogManager {
     }
 
     public void log(Profile profile,String check, String metadata) {
-        queue.add(new LogManager.Log(profile.uuid,profile.connectionTracker.keepAlivePing,check,ServerModule.INSTANCE.getServerId(),metadata,null));
+        queue.add(new LogManager.Log(profile.uuid,profile.connectionTracker.keepAlivePing,check,Trojan.getInstance().getServerId(),metadata,null));
     }
 
     public void log(Profile profile, Check check, String metadata) {
-        queue.add(new LogManager.Log(profile.uuid,profile.connectionTracker.keepAlivePing,check.getName(),ServerModule.INSTANCE.getServerId(),metadata,null));
+        queue.add(new LogManager.Log(profile.uuid,profile.connectionTracker.keepAlivePing,check.getName(),Trojan.getInstance().getServerId(),metadata,null));
     }
 
     public void logBan(Profile profile,Check check, String message) {
-        queue.add(new LogManager.Log(profile.uuid,profile.connectionTracker.keepAlivePing,check.getName(),ServerModule.INSTANCE.getServerId(),null,message));
+        queue.add(new LogManager.Log(profile.uuid,profile.connectionTracker.keepAlivePing,check.getName(),Trojan.getInstance().getServerId(),null,message));
     }
 
     @AllArgsConstructor

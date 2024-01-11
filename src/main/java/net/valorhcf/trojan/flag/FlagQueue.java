@@ -2,18 +2,12 @@ package net.valorhcf.trojan.flag;
 
 import cc.fyre.core.profile.ProfileHandler;
 import cc.fyre.core.server.ServerModule;
-import cc.fyre.modsuite.mod.ModHandler;
-import cc.fyre.modsuite.staff.setting.StaffAlertsSettingType;
-import cc.fyre.modsuite.staff.setting.ViewStaffAlertsSetting;
 import mkremins.fanciful.FancyMessage;
 import net.valorhcf.trojan.Trojan;
-import net.valorhcf.trojan.check.Check;
 import org.apache.commons.math3.util.Pair;
 import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scheduler.BukkitTask;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPubSub;

@@ -1,7 +1,5 @@
 package net.valorhcf.trojan.listener;
 
-import cc.fyre.hcf.event.sotw.SOTWHandler;
-import com.mongodb.client.model.Filters;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
 import me.lucko.helper.Schedulers;
@@ -13,7 +11,6 @@ import net.valorhcf.trojan.log.LogManager;
 import net.valorhcf.trojan.packet.TrojanChannelDuplexHandler;
 import net.valorhcf.trojan.profile.Profile;
 import net.valorhcf.trojan.profile.ProfileManager;
-import org.bson.Document;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
