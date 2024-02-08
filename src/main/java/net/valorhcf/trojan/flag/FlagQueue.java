@@ -1,7 +1,6 @@
 package net.valorhcf.trojan.flag;
 
 import cc.fyre.core.profile.ProfileHandler;
-import cc.fyre.core.server.ServerModule;
 import mkremins.fanciful.FancyMessage;
 import net.valorhcf.trojan.Trojan;
 import org.apache.commons.math3.util.Pair;
@@ -88,7 +87,7 @@ public class FlagQueue extends BukkitRunnable {
         final JedisPool pool = Trojan.getInstance().getJedisPool();
         final Jedis jedis = pool.getResource();
 
-        final String server = ServerModule.INSTANCE.getServerId();
+        final String server = Trojan.getInstance().getServerId();
         final Pipeline pipeline = jedis.pipelined();
 
         FlagBody body;
@@ -164,7 +163,7 @@ public class FlagQueue extends BukkitRunnable {
             final String server = split[0];
 
             //TODO better way?
-            if (ServerModule.INSTANCE.getServerId().equals(server)) {
+            if (Trojan.getInstance().getServerId().equals(server)) {
                 return;
             }
 

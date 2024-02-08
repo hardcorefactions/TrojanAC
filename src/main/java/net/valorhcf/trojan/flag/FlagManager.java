@@ -4,7 +4,6 @@ import cc.fyre.core.profile.ProfileHandler;
 import cc.fyre.core.profile.setting.SettingRegistry;
 import cc.fyre.core.profile.settings.SettingButton;
 import cc.fyre.core.profile.settings.SettingMenu;
-import cc.fyre.core.server.ServerModule;
 import cc.fyre.modsuite.mod.ModHandler;
 import cc.fyre.modsuite.staff.setting.StaffAlertsSettingType;
 import cc.fyre.modsuite.staff.setting.ViewStaffAlertsSetting;
@@ -42,7 +41,7 @@ public class FlagManager {
 
         final String displayName = ProfileHandler.INSTANCE.getDisplayNameById(profile.player.getUniqueId());
         final Pair<FancyMessage,FancyMessage> pair = this.toAlert(
-                ServerModule.INSTANCE.getServerId(),
+                Trojan.getInstance().getServerId(),
                 profile.player.getName(),
                 displayName,
                 profile.connectionTracker.keepAlivePing,
@@ -89,7 +88,7 @@ public class FlagManager {
         normal.color(ChatColor.RED);
         normal.style(ChatColor.BOLD);
 
-        if (!server.equals(ServerModule.INSTANCE.getServerId())) {
+        if (!server.equals(Trojan.getInstance().getServerId())) {
             normal.tooltip(ChatColor.GREEN + "Click to join " + ChatColor.WHITE + server + ChatColor.GREEN + "!");
             normal.command("/server " + server);
         }
