@@ -1,22 +1,20 @@
 package net.valorhcf.trojan.flag;
 
-import cc.fyre.core.profile.ProfileHandler;
-import cc.fyre.core.profile.setting.SettingRegistry;
-import cc.fyre.core.profile.settings.SettingButton;
-import cc.fyre.core.profile.settings.SettingMenu;
 import cc.fyre.modsuite.mod.ModHandler;
 import cc.fyre.modsuite.staff.setting.StaffAlertsSettingType;
 import cc.fyre.modsuite.staff.setting.ViewStaffAlertsSetting;
-import cc.fyre.shard.util.item.ItemBuilder;
+import net.valorhcf.trojan.util.item.ItemBuilder;
 import mkremins.fanciful.FancyMessage;
 import net.valorhcf.trojan.Trojan;
 import net.valorhcf.trojan.check.Check;
-import net.valorhcf.trojan.profile.Profile;
 import org.apache.commons.math3.util.Pair;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import setting.SettingRegistry;
+import settings.SettingButton;
+import settings.SettingMenu;
 
 import java.util.function.BiPredicate;
 import java.util.function.Predicate;
@@ -27,49 +25,46 @@ public class FlagManager {
 
     public FlagManager() {
         SettingRegistry.INSTANCE.register(SETTING);
-        SettingMenu.Companion.addCustomizableSetting(new SettingButton<>(SETTING,ItemBuilder.Companion.of(Material.GOLD_BARDING).build()));
+        SettingMenu.Companion.addCustomizableSetting(new SettingButton<>(SETTING, ItemBuilder.Companion.of(Material.GOLD_BARDING).build()));
         new FlagQueue().runTaskTimerAsynchronously(Trojan.getInstance(),3 * 20L,3 * 20L);
 
         Bukkit.getServer().getPluginManager().registerEvents(new FlagListener(),Trojan.getInstance());
     }
 
-    public void alert(Profile profile,Check check,String metadata) {
-        this.alert(profile,check.getName(),metadata);
+    public void alert(Player player,Check check,String metadata) {
+        this.alert(player,check.getName(),metadata);
     }
 
-    public void alert(Profile profile,String check, String metadata) {
+    public void alert(Player player, String check, String metadata) {
 
-        final String displayName = ProfileHandler.INSTANCE.getDisplayNameById(profile.player.getUniqueId());
+        final String displayName = player.getName();
         final Pair<FancyMessage,FancyMessage> pair = this.toAlert(
                 Trojan.getInstance().getServerId(),
-                profile.player.getName(),
+                player.getName(),
                 displayName,
-                profile.connectionTracker.keepAlivePing,
                 check,
                 metadata
         );
         
         Bukkit.getOnlinePlayers()
                 .stream()
-                .filter((Predicate<Player>) player -> PREDICATE.test(player,FlagAlertType.SERVER))
+                .filter((Predicate<Player>) p -> PREDICATE.test(p, FlagAlertType.SERVER))
                 .forEach(p -> {
                     
-                    if (pair.getSecond() != null && ProfileHandler.INSTANCE.isSuperuser(p.getUniqueId())) {
+                    if (pair.getSecond() != null && p.isOp()) {
                         pair.getSecond().send(p);
                     } else {
                         pair.getFirst().send(p);
                     }
-                    
                 });
 
-        FlagQueue.addToQueue(profile.player.getUniqueId(),profile.player.getName(),displayName,profile.connectionTracker.keepAlivePing,check,metadata);
+        FlagQueue.addToQueue(player.getName(),player.getName(),displayName,player,check,metadata);
     }
 
     public Pair<FancyMessage,FancyMessage> toAlert(
             String server,
             String username,
             String displayName,
-            long ping,
             String check,
             String metadata
     ) {
@@ -106,7 +101,6 @@ public class FlagManager {
         normal.then(check);
         normal.color(ChatColor.RED);
         normal.then(" ");
-        normal.then("[" + ping + "ms]");
         normal.color(ChatColor.DARK_AQUA);
 
         FancyMessage advanced = null;
@@ -132,13 +126,7 @@ public class FlagManager {
             return false;
         }
 
-        final cc.fyre.core.profile.Profile profile1 = ProfileHandler.INSTANCE.getProfileById(player.getUniqueId());
-
-        if (profile1 == null) {
-            return false;
-        }
-
-        final FlagAlertType flagAlertTypeSetting = profile1.getSetting(FlagManager.SETTING).getValue();
+        final FlagAlertType flagAlertTypeSetting = player1.getSetting(FlagManager.SETTING).getValue();
 
         if (flagAlertTypeSetting == FlagAlertType.NONE) {
             return false;
@@ -148,7 +136,7 @@ public class FlagManager {
             return false;
         }
 
-        final StaffAlertsSettingType value = profile1.getSetting(ViewStaffAlertsSetting.INSTANCE).getValue();
+        final StaffAlertsSettingType value = player1.getSetting(ViewStaffAlertsSetting.INSTANCE).getValue();
 
         if (value == StaffAlertsSettingType.MOD_MODE) {
             return ModHandler.INSTANCE.isInModMode(player.getUniqueId());

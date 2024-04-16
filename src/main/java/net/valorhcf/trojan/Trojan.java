@@ -61,7 +61,6 @@ public class Trojan extends ExtendedJavaPlugin {
     private final Map<UUID, Double> range = new HashMap<>();
 
     @Getter
-    private boolean HCFEnabled;
     private String teleportCommand;
 
     public static final Gson GSON = new GsonBuilder().create();

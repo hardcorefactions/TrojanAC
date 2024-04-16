@@ -1,13 +1,11 @@
 package net.valorhcf.trojan.flag;
 
-import cc.fyre.migot.event.PlayerFlagEvent;
-import net.valorhcf.trojan.Trojan;
-import net.valorhcf.trojan.profile.Profile;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 
 public class FlagListener implements Listener {
+
+    /*
+        Requires a Spigot with a phase check which I don't have any atm.
 
     @EventHandler(priority = EventPriority.MONITOR)
     private void onPlayerFlag(PlayerFlagEvent event) {
@@ -31,5 +29,6 @@ public class FlagListener implements Listener {
         Trojan.getInstance().getLogManager().log(profile,name,null);
         Trojan.getInstance().getFlagManager().alert(profile,name,null);
     }
+    */
 
 }

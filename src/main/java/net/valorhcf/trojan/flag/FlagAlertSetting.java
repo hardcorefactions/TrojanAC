@@ -1,10 +1,10 @@
 package net.valorhcf.trojan.flag;
 
-import cc.fyre.core.profile.Profile;
 import cc.fyre.core.profile.setting.Setting;
 import cc.fyre.core.profile.setting.SettingOption;
 import cc.fyre.core.profile.setting.SettingValue;
 import net.valorhcf.trojan.Trojan;
+import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -59,7 +59,7 @@ public class FlagAlertSetting extends Setting<FlagAlertType> {
     }
 
     @Override
-    public FlagAlertType getNextValue(@NotNull Profile profile, @Nullable FlagAlertType flagAlertType) {
+    public FlagAlertType getNextValue(@NotNull Player player, @Nullable FlagAlertType flagAlertType) {
 
         if (flagAlertType == null) {
             return FlagAlertType.GLOBAL;
@@ -75,13 +75,13 @@ public class FlagAlertSetting extends Setting<FlagAlertType> {
     }
 
     @Override
-    public boolean hasPermission(@NotNull Profile profile) {
-        return profile.hasPermission(Trojan.STAFF_PERMISSION);
+    public boolean hasPermission(@NotNull Player player) {
+        return player.hasPermission(Trojan.STAFF_PERMISSION);
     }
 
     @Override
-    public boolean hasPermission(@NotNull Profile profile, @Nullable FlagAlertType flagAlertType) {
-        return this.hasPermission(profile);
+    public boolean hasPermission(@NotNull Player player, @Nullable FlagAlertType flagAlertType) {
+        return this.hasPermission(player);
     }
 
 }
